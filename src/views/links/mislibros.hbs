@@ -1,26 +1,29 @@
 {{> barra}}
+
 <div class="container p-4">
   <div class="row">
     {{#each libro}}
-      <div class="col-m3">
-        <div class="card-text">
-          <div class="card-body">
-            <a href="">
-              <h3 class="card-title text-uppercase">
-                {{titulo}}
-              </h3>
-            </a>
-            <p>{{autor}}</p>
-            <a href="/links/change/{{idLibro}}">Cambiar Estado</a>
-            <a href="/links/editbook/{{idLibro}}">Editar</a>
+      <div class = "cool-md-3">
+        <div class = "card text-center">
+          <div class = "card-body">
+            
+            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>
+            
+            <br>
+            <label class="m-2">Autor:  {{autor}} 
+            <br>
+            <br>
+            <a href="/links/deletebook/{{idLibro}}" class="btn btn-danger">Eliminar</a>
+            <a href="/links/editbook/{{idLibro}}" class="btn btn-secondary">Editar</a>
+             
           </div>
+
         </div>
+
       </div>
-    {{else}}
-      <div class="col-md4">
-        <p>No hay libros publicados aún</p>
-        <a href="/links/add">Crea uno aquí</a>
-      </div>
+
+
     {{/each}}
   </div>
 </div>
+

@@ -6,6 +6,8 @@ const helpers = require("../lib/helpers");
 const path = require("path");
 const { Console } = require("console");
 
+
+
 const expresiones = {
   nombre: /^[a-zA-ZÀ-ÿ\s]{1,50}$/,
   apellidos: /^[a-zA-ZÀ-ÿ\s]{0,50}$/,
@@ -18,10 +20,16 @@ const expresiones = {
 
 router.get("/publicar", isLoggedIn, (req, res) => {
   res.render("links/publicar");
+
 });
 
+
+
+
+
 router.post("/publicar", isLoggedIn, async (req, res) => {
-  console.log('gaaa');
+ 
+
   const {
     titulo,
     fechasubida,
@@ -31,8 +39,7 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     autor,
     estado = 1,
     idGenero = 4,
-    idEspecie = 13,
-    dni,
+    idEspecie = 44,
   } = req.body;
   const nuevoLibro = {
     titulo,
@@ -46,16 +53,22 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     idEspecie,
     dni: req.user.dni,
   };
+
+
+  
   await pool.query("INSERT INTO LIBRO SET ?", [nuevoLibro]);
   req.flash("success", "Libro guardado satisfactoriamente");
   res.redirect("/links/mislibros");
 });
 
 router.get("/mislibros", isLoggedIn, async (req, res) => {
+
+  console.log("RAAAAAAAAAAAAA")
   const libro = await pool.query(
     "SELECT * FROM LIBRO WHERE ESTADO=1 and dni = ?",
     [req.user.dni]
   );
+
   res.render("links/mislibros", { libro });
 });
 
@@ -77,6 +90,14 @@ router.get("/editbook/:idLibro", isLoggedIn, async (req, res) => {
   );
   res.render("links/editbook", { editbook: libro[0] });
 });
+
+
+router.get("/deletebook/:idLibro", isLoggedIn, async (req, res) => {
+  const { idLibro } = req.params;
+  await pool.query("delete from libro where idLibro = ?",[idLibro]);
+  res.redirect("/links/mislibros");   
+});
+
 
 router.post("/editbook/:idLibro", isLoggedIn, async (req, res) => {
   const { idLibro } = req.params;

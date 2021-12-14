@@ -10,7 +10,10 @@ const expresiones = {
 };
 
 router.get("/", async (req, res) => {
+  
   const genero = await pool.query("SELECT nombre FROM genero");
+
+  console.log("asdasd") 
   res.render("index", { genero });
 });
 

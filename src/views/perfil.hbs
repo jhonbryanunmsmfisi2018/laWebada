@@ -1,4 +1,5 @@
 {{> barra}}
+
 <link rel="stylesheet" href="/css/perfil-modificar.css" />
 
 <div class="DivCont">
@@ -7,7 +8,7 @@
       {{#if user.foto}}
         <img class="Img" src="/upload/{{user.foto}}" alt="Foto Perfil" />
       {{else}}
-        <img class="Img" src="/img/default.jpg" alt="Foto Perfil" />
+        <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/default_ti9xlo.jpg" alt="Foto Perfil" />
       {{/if}}
     </div>
 
@@ -16,19 +17,16 @@
 
       <div class="Contactos">
         <figure>
-          <img class="Img" src="/img/wsp.png" alt="WhatsApp" />
+          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059751/wsp_yi5cuo.png" alt="WhatsApp" />
         </figure>
         <figure>
-          <img class="Img" src="/img/twitter.jpg" alt="Twitter" />
+          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/instagram_fwalol.png" alt="Instagram" />
         </figure>
         <figure>
-          <img class="Img" src="/img/instagram.png" alt="Instagram" />
+          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/fb_oftquk.png" alt="Facebook" />
         </figure>
         <figure>
-          <img class="Img" src="/img/fb.png" alt="Facebook" />
-        </figure>
-        <figure>
-          <img class="Img" src="/img/watt.png" alt="Wattpad" />
+          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059749/watt_dugos0.png" alt="Wattpad" />
         </figure>
       </div>
     </div>
@@ -39,55 +37,7 @@
     <h1>{{user.nombre}} {{user.apellidoPaterno}} {{user.apellidoMaterno}}</h1>
 
     <div class="libros-publicados">
-      <h2>Libros a la venta</h2>
-
-      <div class="mis-libros">
-        <div class="libro">
-          <figure>
-            <img src="/img/l1.jpg" alt="libro" />
-          </figure>
-          <h3>La ciudad y los perros</h3>
-          <h4>de Mario Vargas Llosa</h4>
-          <div>Calificación</div>
-          <p>Precio</p>
-          <button type="button">Dar de baja</button>
-        </div>
-
-        <div class="libro">
-          <figure>
-            <img src="/img/l1.jpg" alt="libro" />
-          </figure>
-          <h3>La ciudad y los perros</h3>
-          <h4>de Mario Vargas Llosa</h4>
-          <div>Calificación</div>
-          <p>Precio</p>
-          <button type="button">Dar de baja</button>
-        </div>
-
-        <div class="libro">
-          <figure>
-            <img src="/img/l1.jpg" alt="libro" />
-          </figure>
-          <h3>La ciudad y los perros</h3>
-          <h4>de Mario Vargas Llosa</h4>
-          <div>Calificación</div>
-          <p>Precio</p>
-          <button type="button">Dar de baja</button>
-        </div>
-
-        <div class="libro">
-          <figure>
-            <img src="/img/l1.jpg" alt="libro" />
-          </figure>
-          <h3>La ciudad y los perros</h3>
-          <h4>de Mario Vargas Llosa</h4>
-          <div>Calificación</div>
-          <p>Precio</p>
-          <button type="button">Dar de baja</button>
-        </div>
-      </div>
-    </div>
-
+      
     <div class="GrupoDatosModificar">
       <div class="GrupoInfoPersonal">
         <h2>Información Personal</h2>

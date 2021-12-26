@@ -4,6 +4,9 @@ const router = express.Router();
 const passport = require("passport");
 const { isLoggedIn, isNotLoggedIn } = require("../lib/auth");
 
+const pool = require("../database");
+
+
 router.get("/registro", isNotLoggedIn, (req, res) => {
   console.log("Dsadasd")
   res.render("auth/registro");
@@ -33,8 +36,14 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
   })(req, res, next);
 });
 
-router.get("/perfil", isLoggedIn, (req, res) => {
-  res.render("perfil");
+router.get("/perfil", isLoggedIn, async (req, res) => {
+  const  redsocial = await pool.query("select * from usuarioredsocial where dni = ?", [req.user.dni]);
+  if (redsocial.linkwsp != ""){
+    req.flash("successwsp","Hola");
+  }else{
+    req.flash("messageswsp","url vacia");
+  }
+  res.render("perfil", { redsocial: redsocial[0] });
 });
 
 router.get("/logout", isLoggedIn, (req, res) => {

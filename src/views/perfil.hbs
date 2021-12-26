@@ -16,18 +16,62 @@
       <h2 style="margin-top: 1.5rem;">Contactos</h2>
 
       <div class="Contactos">
-        <figure>
-          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059751/wsp_yi5cuo.png" alt="WhatsApp" />
-        </figure>
-        <figure>
-          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/instagram_fwalol.png" alt="Instagram" />
-        </figure>
-        <figure>
-          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/fb_oftquk.png" alt="Facebook" />
-        </figure>
-        <figure>
-          <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059749/watt_dugos0.png" alt="Wattpad" />
-        </figure>
+         {{#if redsocial.link_wsp}}
+            <figure> 
+              <a href={{redsocial.link_wsp}} target="_blank">
+              <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640544179/WhatsApp.svg_m3biqw.png" alt="WhatsApp" />
+              </a>
+            </figure>
+          {{else}}
+            <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640544179/WhatsApp.svg_m3biqw.png" alt="WhatsApp"  onClick="alert('¡El Usuario no posee whatsapp, porfavor añadir tu url en editar perfil!')"/>
+         {{/if}}
+         {{#if redsocial.link_ig}}
+            <figure>
+              <a href={{redsocial.link_ig}} target="_blank">
+                <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/instagram_fwalol.png" alt="Instagram" />
+              </a>
+              
+            </figure>
+          {{else}}
+            <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/instagram_fwalol.png" alt="Instagram" onClick="alert('¡El Usuario no posee instagram, porfavor añadir tu url en editar perfil!')"/>
+         {{/if}}
+         {{#if redsocial.link_fb}}
+            <figure>
+              <a href={{redsocial.link_fb}} target="_blank">
+                <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/fb_oftquk.png" alt="Facebook" />
+              </a>  
+            </figure>
+          {{else}}
+            <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/fb_oftquk.png" alt="Facebook" onClick="alert('¡El Usuario no posee facebook, porfavor añadir tu url en editar perfil!')"/>
+         {{/if}}
+         {{#if redsocial.link_twt}}
+            <figure>
+              <a href={{redsocial.link_twt}} target="_blank">
+                <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640544071/twitter-logo-2-1_b9pjr0.png" alt="Twitter" />
+              </a>
+            </figure>
+          {{else}}
+            <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640544071/twitter-logo-2-1_b9pjr0.png" alt="Twitter" onClick="alert('¡El Usuario no posee twitter, porfavor añadir tu url en editar perfil!')"/>
+         {{/if}}
+         {{#if redsocial.link_wtp}}
+            <figure>
+              <a href={{redsocial.link_wtp}} target="_blank">
+                <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059749/watt_dugos0.png" alt="Wattpad" />
+              </a>
+            
+            </figure>
+          {{else}}
+            <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059749/watt_dugos0.png" alt="Wattpad" onClick="alert('¡El Usuario no posee whattpad, porfavor añadir tu url en editar perfil!')"/>
+         {{/if}}
+         
+
+
+        
+        
+        
+        
+        
+        
       </div>
     </div>
 

@@ -26,17 +26,7 @@
               <h4>Eso depende de como hallas quedado con el vendedor a la hora
                 de comprar el libro.</h4>
             </div>
-            {{#if success}}
-              <div id="message" class="mensaje-exito mensaje-activar">
-                {{success}}
-              </div>
-            {{/if}}
-
-            {{#if message}}
-              <div id="message" class="mensaje-error mensaje-activar">
-                {{message}}
-              </div>
-            {{/if}}
+            
             <form action="/ayuda" method="POST" class="col-md-6">
               <h2 style="margin: auto;margin-bottom: 20;">REALIZAR CONSULTA</h2>
 
@@ -81,5 +71,40 @@
       </div>
     </div>
   </div>
+
+  {{#if success}}
+  <form action="/" method="GET" class="col-md-6">
+    <div class="window-notice" id="window-notice">
+      <div class="content">
+        <div id="message" class="mensaje-exito mensaje-activar">
+          {{success}}
+        </div>
+        <div class="content-buttons"><button class="btn btn-primary">Aceptar</button></div>
+      </div>
+    </div>
+  </form>
+            
+
+            
+              
+  {{/if}}
+
+  {{#if message}}
+  <form action="/ayuda" method="GET" class="col-md-6">
+    <div class="window-notice" id="window-notice">
+      <div class="content">
+        <div id="message" class="mensaje-error mensaje-activar">
+          {{message}}
+        </div>
+        <div class="content-buttons"><button class="btn btn-primary">Regresar</button></div>
+      </div>
+    </div>
+  </form>
+
+    
+              
+{{/if}}
+
+  
 
 </main>

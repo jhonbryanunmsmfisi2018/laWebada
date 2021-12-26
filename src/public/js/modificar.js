@@ -39,7 +39,7 @@ const validarFormulario = (e) => {
       break;
     case "correo_electronico":
       validarCampo(expresiones.correo, e.target, "correo");
-      break;
+      break;z
   }
 };
 

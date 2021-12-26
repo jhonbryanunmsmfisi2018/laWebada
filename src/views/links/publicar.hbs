@@ -10,7 +10,8 @@
 
         <form 	class="formulario-publicar"
     		id="form-publicar"
-    		action="/links/publicar" method="post">
+    		action="/links/publicar" method="post"
+        encType="multipart/form-data">
 
         <div class="box-shadow-full" style="padding-top: 3rem;">            
           <div class="row" style="margin-bottom: 25px;">
@@ -36,7 +37,13 @@
               </div>
             </div>
           </div>
-          <input class="form-control" type="file" id="formFile" />
+          <div class = "input-group mb-3">
+            <input type="file" name="foto" id="foto" accept="image/*" />
+
+          </div>
+      
+          
+          
           <h1 style="margin-top: 25px;">
             Información del libro
           </h1>

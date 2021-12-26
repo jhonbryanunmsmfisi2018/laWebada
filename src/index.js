@@ -10,10 +10,28 @@ const { database } = require("./keys");
 const swal = require("sweetalert2");
 const fileUpload = require("express-fileupload");
 
+const multer = require('multer');
+
+
 //inicializaciones
 const app = express();
 require("./lib/passport");
 app.use(fileUpload());
+
+
+
+app.use(morgan('dev'));
+
+app.use(express.urlencoded({extended: false}));
+const storage = multer.diskStorage({
+    destination: path.join(__dirname, 'public/img/uploads'),
+    filename: (req, file, cb, filename) => {
+        console.log(file);
+        cb(null, uuid() + path.extname(file.originalname));
+    }
+}) 
+app.use(multer({storage}).single('image'));
+
 
 //configuraciones del servidor
 app.set("port", process.env.PORT || 4000);
@@ -45,6 +63,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 //variable globales
 app.use((req, res, next) => {

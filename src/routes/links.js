@@ -7,6 +7,16 @@ const path = require("path");
 const { Console } = require("console");
 
 
+const cloudinary = require("cloudinary");
+const { compareSync } = require("bcrypt");
+cloudinary.config({
+  cloud_name: 'didiblsne',
+  api_key: '583462856519366',
+  api_secret: 'tPNut7nAA-p2OXNPyl8CYi0zLVM'
+
+})
+
+
 
 const expresiones = {
   nombre: /^[a-zA-ZÀ-ÿ\s]{1,50}$/,
@@ -26,7 +36,6 @@ router.get("/publicar", isLoggedIn, (req, res) => {
 
 
 
-
 router.post("/publicar", isLoggedIn, async (req, res) => {
  
 
@@ -41,6 +50,37 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     idGenero = 4,
     idEspecie = 44,
   } = req.body;
+  
+  let foto;
+  let subirDireccion;
+
+  if (req.files && Object.keys(req.files).length != 0) {
+    foto = req.files.foto;
+    subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
+
+    foto.mv(subirDireccion);
+  }
+
+  console.log(subirDireccion)
+
+ 
+
+/*
+  foto = req.files.foto;
+
+  subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
+  foto.mv(subirDireccion);
+
+
+    
+  const result = await cloudinary.v2.uploader.upload(subirDireccion)*/
+
+
+
+  
+  console.log(req.body)
+  console.log(result.url)
+
   const nuevoLibro = {
     titulo,
     fechasubida,
@@ -52,18 +92,18 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     idGenero,
     idEspecie,
     dni: req.user.dni,
+    url: subirDireccion
   };
-
 
   
   await pool.query("INSERT INTO LIBRO SET ?", [nuevoLibro]);
   req.flash("success", "Libro guardado satisfactoriamente");
-  res.redirect("/links/mislibros");
+  res.redirect("/links/publicar");
 });
 
 router.get("/mislibros", isLoggedIn, async (req, res) => {
 
-  console.log("RAAAAAAAAAAAAA")
+
   const libro = await pool.query(
     "SELECT * FROM LIBRO WHERE ESTADO=1 and dni = ?",
     [req.user.dni]
@@ -127,6 +167,8 @@ router.get("/edituser/datos/:dni", isLoggedIn, async (req, res) => {
 router.post("/edituser/datos/:dni", isLoggedIn, async (req, res) => {
   const { dni } = req.params;
 
+  
+
   const {
     nombre,
     apellidoPaterno,
@@ -144,6 +186,8 @@ router.post("/edituser/datos/:dni", isLoggedIn, async (req, res) => {
     fb,
     wtp,
   } = req.body;
+
+  console.log(req.body)
 
   let foto;
   let subirDireccion;
@@ -238,5 +282,6 @@ router.post("/edituser/contra/:dni", isLoggedIn, async (req, res) => {
 
   res.redirect("back");
 });
+
 
 module.exports = router;

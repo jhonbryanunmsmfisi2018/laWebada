@@ -165,82 +165,80 @@ router.get("/edituser/datos/:dni", isLoggedIn, async (req, res) => {
 });
 
 router.post("/edituser/datos/:dni", isLoggedIn, async (req, res) => {
-  const { dni } = req.params;
+
+  try {
+
+    const { dni } = req.params;
 
   
 
-  const {
-    nombre,
-    apellidoPaterno,
-    apellidoMaterno,
-    direccion,
-    telefono,
-    correo_electronico,
-    genero,
-    fecha_nac,
-    usuario,
-    id_distrito,
-    wsp,
-    twt,
-    ig,
-    fb,
-    wtp,
-  } = req.body;
+    const {
+      nombre,
+      apellidoPaterno,
+      apellidoMaterno,
+      direccion,
+      telefono,
+      correo_electronico,
+      genero,
+      fecha_nac,
+      usuario,
+      id_distrito,
+      wsp,
+      twt,
+      ig,
+      fb,
+      wtp,
+    } = req.body;
 
-  console.log(req.body)
+    
 
-  let foto;
-  let subirDireccion;
+    let foto;
+    let subirDireccion;
 
-  if (req.files && Object.keys(req.files).length != 0) {
-    foto = req.files.foto;
-    subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
+    if (req.files && Object.keys(req.files).length != 0) {
+      foto = req.files.foto;
+      subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
 
-    foto.mv(subirDireccion, async () => {
-      await pool.query("UPDATE persona SET foto=? WHERE dni=?", [
-        foto.name,
-        dni,
-      ]);
-    });
-  }
+      foto.mv(subirDireccion, async () => {
+        await pool.query("UPDATE persona SET foto=? WHERE dni=?", [
+          foto.name,
+          dni,
+        ]);
+      });
+    }
 
-  if (
-    expresiones.nombre.test(nombre) &&
-    expresiones.nombre.test(apellidoPaterno) &&
-    expresiones.apellidos.test(apellidoMaterno) &&
-    expresiones.correo.test(correo_electronico) &&
-    expresiones.direccion.test(direccion) &&
-    (telefono.length == 0 || expresiones.celular.test(telefono)) &&
-    (usuario.length == 0 || expresiones.usuario.test(usuario))
-  ) {
-    await pool.query(
-      "update persona set nombre=?,apellidoPaterno=?,apellidoMaterno=?,direccion=?,telefono=?,correo_electronico=?,genero=?,usuario=?,fecha_nac=?,id_distrito=? where dni = ?",
-      [
-        nombre,
-        apellidoPaterno,
-        apellidoMaterno,
-        direccion,
-        telefono,
-        correo_electronico,
-        genero,
-        usuario,
-        fecha_nac,
-        id_distrito,
-        dni,
-      ]
-    );
+    
+      await pool.query(
+        "update persona set nombre=?,apellidoPaterno=?,apellidoMaterno=?,direccion=?,telefono=?,correo_electronico=?,genero=?,usuario=?,fecha_nac=?,id_distrito=? where dni = ?",
+        [
+          nombre,
+          apellidoPaterno,
+          apellidoMaterno,
+          direccion,
+          telefono,
+          correo_electronico,
+          genero,
+          usuario,
+          fecha_nac,
+          id_distrito,
+          dni,
+        ]
+      );
 
-    await pool.query(
-      "update usuarioredsocial set link_wsp=?,link_fb=?,link_twt=?,link_ig=?,link_wtp=? where dni = ?",
-      [wsp, twt, ig, fb, wtp, dni]
-    );
+      await pool.query(
+        "update usuarioredsocial set link_wsp=?,link_fb=?,link_twt=?,link_ig=?,link_wtp=? where dni = ?",
+        [wsp, twt, ig, fb, wtp, dni]
+      );
 
-    req.flash("success", "Datos actualizados satisfactoriamente");
-  } else {
+      req.flash("success", "Datos actualizados satisfactoriamente");
+    
+
+    res.redirect(dni);
+
+  } catch{
     req.flash("message", "Error en algunos de los campos");
   }
-
-  res.redirect(dni);
+  
 });
 
 router.post("/edituser/contra/:dni", isLoggedIn, async (req, res) => {

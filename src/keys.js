@@ -7,5 +7,11 @@ module.exports = {
    },
 };
 
-//cambios
-//mysql://b7fd6191524734:9992cba2@us-cdbr-east-05.cleardb.net/heroku_a2fd79052888e7b?reconnect=true
+/*module.exports = {
+   database: {
+      host: '127.0.0.1',
+      user: 'root',
+      password: 'root',
+      database: 'lawebada',
+   },
+};*/

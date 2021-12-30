@@ -8,10 +8,17 @@
       <i class="fab fa-facebook"></i>
     </div>
 
-    <div class="nav-sup__grupo-busqueda">
-      <input type="text" placeholder="Escriba el título que esta buscando" />
-      <i class="fas fa-search"></i>
-    </div>
+    <form 
+    class="nav-sup__grupo-busqueda"
+    action="/links/buscar" 
+    method="POST"    
+    id="form-buscar">
+      <div class="nav-sup__grupo-busqueda">
+        <input type="text"  name="libro" id="libro" placeholder="Escriba el título que esta buscando" />
+        <i class="fas fa-search"></i>
+        
+      </div>
+    </form>
 
     {{#if user}}
       <div id="nav-sup__mi-cuenta" class="nav-sup__mi-cuenta">

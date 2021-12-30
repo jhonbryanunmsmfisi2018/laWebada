@@ -281,5 +281,27 @@ router.post("/edituser/contra/:dni", isLoggedIn, async (req, res) => {
   res.redirect("back");
 });
 
+router.post("/buscar", isLoggedIn, async (req, res) => {
+ 
+  const { libro } = req.body;
+
+  const libros= await pool.query("SELECT * FROM libro WHERE titulo=?", [libro]);
+  console.log(libros);
+
+  res.render("links/buscar", {libros});
+
+  
+  req.flash("success", "Libro encontrado");
+  
+  
+});
+
+router.get("/buscar", isLoggedIn, (req, res) => {
+  
+  res.render("links/buscar");
+  
+  
+});
+
 
 module.exports = router;

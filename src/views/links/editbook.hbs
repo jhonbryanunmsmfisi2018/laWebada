@@ -1,56 +1,110 @@
-<div class="container p-4">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
+{{> barra}}
+
+<style>
+
+.form{
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario{
+  width: 400px;
+  background: #BAC0C0;
+  padding: 30px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 5px;
+
+}
+
+.controls{
+  width: 100%;
+  background: #EBF5F5;
+  padding: 10px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+  border: 1px solid #6075CB;
+  font-size: 18px;
+}
+
+</style>
+
+<div class="form">
+  <center><h1>Editar Libro</h1></center>
+  <div class="row" style="margin: -5rem;">
+    <div class="col-md-3">
+      <div class="formulario">
           <form action="/links/editbook/{{editbook.idLibro}}" method="POST">
             <div class="form-group">
+              <p>TITULO: 
               <input
+                class="controls"
                 type="text"
                 value="{{editbook.titulo}}"
                 name="titulo"
                 placeholder="Título"
                 autofocus
-              />
+              /> </p>
             </div>
+            
             <div class="form-group">
+              <p>DESCRIPCIÓN:
               <input
+                class="controls"
                 type="text"
                 value="{{editbook.descripcion}}"
                 name="descripcion"
                 placeholder="Descripción"
               />
+              </P>
             </div>
+
             <div class="form-group">
+              <p>CANTIDAD:
               <input
+                class="controls"
                 type="number"
                 value="{{editbook.stock}}"
                 name="stock"
                 placeholder="Cantidad"
               />
+              </p>
             </div>
+
             <div class="form-group">
+              <p>PRECIO:
               <input
+                class="controls"
                 type="number"
                 value="{{editbook.precio}}"
                 name="precio"
                 placeholder="Precio"
               />
+              </p>
             </div>
+
             <div class="form-group">
+              <p>AUTOR:
               <input
+                class="controls"
                 type="text"
                 value="{{editbook.autor}}"
                 name="autor"
                 placeholder="Autor"
               />
+              </p>
             </div>
             <button>
               Actualizar
             </button>
           </form>
-        </div>
       </div>
+      <br>
     </div>
   </div>
 </div>

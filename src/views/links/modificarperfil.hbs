@@ -11,24 +11,36 @@
   >
     <div class="ContDatosIzq">
       <div class="DivImg">
+
+        <label for="foto">Editar Foto</label>
         <figure>
           {{#if user.foto}}
-            <img class="Img" src="/upload/{{user.foto}}" alt="Foto Perfil" />
+
+          <input hidden
+            class="mensaje"
+            name="url"
+            id="url"               
+            required
+
+          />
+  
+          <img  class="Img" id="imagen" src = {{user.foto}} alt = "Foto Perfil"/>
+
+          <button id = "btn-foto" onclick="miFunc()" class = "btn-primary">Subir Foto</button>
+            
           {{else}}
             <img class="Img" src="/img/default.jpg" alt="Foto Perfil" />
           {{/if}}
         </figure>
-        <label for="foto">Editar Foto</label>
-        <input type="file" name="foto" id="foto" accept="image/*" />
+        
+        
       </div>
 
       <div class="GrupoContacto">
         <h2>Contactos</h2>
 
         <div class="contacto">
-          <figure>
-            <img class="Img" src="/img/wsp.png" alt="WhatsApp" />
-          </figure>
+          <label>Enlace de WhatsApp</label>
           <input
             class="Enlaces"
             type="url"
@@ -40,9 +52,7 @@
         </div>
 
         <div class="contacto">
-          <figure>
-            <img class="Img" src="/img/twitter.jpg" alt="Twitter" />
-          </figure>
+          <label>Enlace de Twitter</label>
           <input
             class="Enlaces"
             type="url"
@@ -54,9 +64,7 @@
         </div>
 
         <div class="contacto">
-          <figure>
-            <img class="Img" src="/img/instagram.png" alt="Instagram" />
-          </figure>
+          <label>Enlace de Instagram</label>
           <input
             class="Enlaces"
             type="url"
@@ -68,9 +76,7 @@
         </div>
 
         <div class="contacto">
-          <figure>
-            <img class="Img" src="/img/fb.png" alt="Facebook" />
-          </figure>
+          <label>Enlace de Facebook</label>
           <input
             class="Enlaces"
             type="url"
@@ -82,9 +88,7 @@
         </div>
 
         <div class="contacto">
-          <figure>
-            <img class="Img" src="/img/watt.png" alt="Wattpad" />
-          </figure>
+          <label>Enlace de Wattpad</label>
           <input
             class="Enlaces"
             type="url"
@@ -271,7 +275,7 @@
 
           <div class="GrupoInput">
             <label>Contraseña</label>
-            <button class="btn-cambiar-contra">Modificar Contraseña</button>
+            <button class="btn-cambiar-contra">Modificar</button>
           </div>
 
           <h2>Dirección</h2>
@@ -362,5 +366,24 @@
     </form>
   </div>
 </div>
+
+<script>
+  function miFunc() {
+    cloudinary.openUploadWidget({
+    cloudName: "didiblsne", uploadPreset: "pqq4ikys" }, (error, result) => {
+      if (!error && result && result.event === 'success') {
+        console.log('Imagen subida con éxito', result.info);
+        const imagen = document.querySelector('#imagen');
+        imagen.src = result.info.secure_url;
+        
+        const url = document.querySelector('#url');
+        url.value = result.info.secure_url;
+
+        console.log(url.value)
+        
+    }
+    });
+  }
+</script>
 
 <script src="/js/modificar.js"></script>

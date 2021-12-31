@@ -1,7 +1,7 @@
 'use strict';
 
-const boton_foto = document.querySelector('#btn-upload');
-const imagen = document.querySelector('#user-photo');
+const boton_foto = document.querySelector('#btn-foto');
+const imagen = document.querySelector('#user-foto');
 
 let widget_cloudinary = cloudinary.createUploadWidget({
     cloudName: 'pabusu',

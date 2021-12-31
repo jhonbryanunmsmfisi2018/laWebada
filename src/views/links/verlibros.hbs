@@ -1,6 +1,43 @@
 {{> navigation}}
 
 <div class="container p-4">
+
+ 
+    <div class="GrupoInutp">
+      <form 
+      class="formulario-publicar"
+    	id="form-publicar"
+    	action="/links/verlibros" method="post">
+
+        <label for="especie">
+          <h2>Filtrar por Categoria  </h2>
+        </label>
+        <select select class="Input" name="Genero" id= "Genero">
+           <option
+            value=""
+            selected
+          >
+          ---
+          </option>
+          {{#each genero}}
+          <option
+            value="{{idGenero}}"
+            {{selected idGenero}}
+          >
+          {{nombre}}
+          </option>
+          {{/each}}
+          </select>
+
+        <button>Buscar</button>
+      
+      
+      
+      </form>
+            
+    </div>
+
+  
   <div class="row">
 
 
@@ -16,7 +53,7 @@
             
             <center>
                 <figure style="width: 50%">
-                    <img style="width:100%" src="https://images.cdn1.buscalibre.com/fit-in/360x360/6b/43/6b43ce8e1134abe50ac0b4c9bc3e9660.jpg" />
+                    <img style="width: 100%" src="{{url}}" />
                 </figure>
             </center>
 
@@ -43,6 +80,5 @@
   <br>
 </div>
 <br>
-
 
 

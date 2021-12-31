@@ -1,6 +1,10 @@
 {{> barra}}
 
 <div class="container p-4">
+  
+ 
+    
+
   <div class="row">
     {{#each libro}}
       <div class = "cool-md-3">
@@ -8,13 +12,17 @@
           <div class = "card-body">
             
             <h3 class = "card-title text-uppercase"> {{titulo}}</h3>
+
+            <center>
+                <figure style="width: 50%">
+                    <img style="width: 100%" src="{{url}}" />
+                </figure>
+            </center>
             
             <br>
             <label class="m-2">Autor:  {{autor}} 
             <br>
-            <figure style="width: 23%">
-            <img style="width:70%" src="{{url}}" />
-           </figure>
+
             <br>
             <a href="/links/deletebook/{{idLibro}}" class="btn btn-danger">Eliminar</a>
             <a href="/links/editbook/{{idLibro}}" class="btn btn-secondary">Editar</a>

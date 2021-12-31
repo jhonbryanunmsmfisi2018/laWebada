@@ -8,9 +8,30 @@
   
 .contenido {
 	background-color: #ccc;
-	height: 60px;
-	margin-top: 10px;
+	height: 1000px;
+	margin: 100px 100px 100px 100px;
 	margin-bottom: 10px;
+}
+.container-404{
+	text-align: center;
+	width: 100%;  
+	background: #EBFFFF;
+	padding: 200px;
+	box-shadow: 0px 1px 10px rgba(0,0,0,0.3);
+	border-radius: 5px;
+	line-height: 1.7;
+	color: #434343;
+}
+.boton{
+	display: inline-block;
+	margin-top: 15px;
+	text-decoration: none;
+	background: #1a84d3;
+	color: #fff;
+	padding: 10px 15px;
+	border-radius: 5px;
+	font-size: 15px;
+  
 }
 
 
@@ -45,7 +66,16 @@
     {{/each}}
 
     {{else}}
-    <h1>no econtramos tu wbd</h1> 
+    <center>
+      <div class="container-404">
+        <h1><b>ARTÍCULO NO ENCONTADO</b></h1>
+        <h5>No se encontro ningur articulo con el nombre que busco. Porfavor vuelva a intentar con otro artículo</h5>
+        <a href="/" class="boton" >
+        <h2>Volver a Página Principal</h2>
+        </a>
+      </div>
+    </center>  
+    
     {{/if}}
     
 

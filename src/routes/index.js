@@ -4,6 +4,15 @@ const pool = require("../database");
 const path = require("path");
 const { isLoggedIn } = require("../lib/auth");
 
+
+const helpers = require("../lib/helpers");
+
+const { Console } = require("console");
+
+
+
+
+
 const expresiones = {
   correo: /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   usuario: /^[a-zA-Z0-9-_]{4,12}$/,
@@ -11,19 +20,19 @@ const expresiones = {
 
 router.get("/", async (req, res) => {
   
-  const genero = await pool.query("SELECT nombre FROM genero");
+  const genero = await pool.query("SELECT * FROM genero");
 
   console.log("asdasd") 
   res.render("index", { genero });
 });
 
 router.get("/ayuda", async (req, res) => {
-  const genero = await pool.query("SELECT nombre FROM genero");
+  const genero = await pool.query("SELECT * FROM genero");
   res.render("ayuda", { genero });
 });
 
 router.get("/denunciar", async (req, res) => {
-  const genero = await pool.query("SELECT nombre FROM genero");
+  const genero = await pool.query("SELECT *  FROM genero");
   res.render("denunciar", { genero });
 });
 

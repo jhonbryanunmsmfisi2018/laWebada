@@ -5,19 +5,11 @@ const { isLoggedIn } = require("../lib/auth");
 const helpers = require("../lib/helpers");
 const path = require("path");
 const { Console } = require("console");
-
-const { urlimagen } = require("../public/js/servicio-imagen");
-
-
-const cloudinary = require("cloudinary");
 const { compareSync } = require("bcrypt");
-const { default: axios } = require("axios");
-cloudinary.config({
-  cloud_name: 'didiblsne',
-  api_key: '583462856519366',
-  api_secret: 'tPNut7nAA-p2OXNPyl8CYi0zLVM'
 
-})
+
+
+
 
 
 
@@ -31,8 +23,11 @@ const expresiones = {
   usuario: /^[a-zA-Z0-9-_]{4,12}$/,
 };
 
-router.get("/publicar", isLoggedIn, (req, res) => {
-  res.render("links/publicar");
+router.get("/publicar", isLoggedIn, async (req, res) => {
+  const genero = await pool.query("SELECT * FROM genero");
+  const especie = await pool.query("SELECT * FROM especie");
+
+  res.render("links/publicar", { genero, especie});
 
 });
 
@@ -41,7 +36,6 @@ router.get("/publicar", isLoggedIn, (req, res) => {
 
 router.post("/publicar", isLoggedIn, async (req, res) => {
 
-  
   const {
     titulo,
     fechasubida,
@@ -50,21 +44,12 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     precio,
     autor,
     estado = 1,
-    idGenero = 4,
-    idEspecie = 44,
+    idGenero ,
+    idEspecie,
+    url,
   } = req.body;
-  
-  let foto;
-  let subirDireccion;
-
-  
-
- 
 
 
-
-
-  
   
 
   const nuevoLibro = {
@@ -78,8 +63,9 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     idGenero,
     idEspecie,
     dni: req.user.dni,
-    url: ""
+    url
   };
+
 
   
   await pool.query("INSERT INTO LIBRO SET ?", [nuevoLibro]);
@@ -175,28 +161,16 @@ router.post("/edituser/datos/:dni", isLoggedIn, async (req, res) => {
       ig,
       fb,
       wtp,
+      url
     } = req.body;
 
     
 
-    let foto;
-    let subirDireccion;
-
-    if (req.files && Object.keys(req.files).length != 0) {
-      foto = req.files.foto;
-      subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
-
-      foto.mv(subirDireccion, async () => {
-        await pool.query("UPDATE persona SET foto=? WHERE dni=?", [
-          foto.name,
-          dni,
-        ]);
-      });
-    }
+   
 
     
       await pool.query(
-        "update persona set nombre=?,apellidoPaterno=?,apellidoMaterno=?,direccion=?,telefono=?,correo_electronico=?,genero=?,usuario=?,fecha_nac=?,id_distrito=? where dni = ?",
+        "update persona set nombre=?,apellidoPaterno=?,apellidoMaterno=?,direccion=?,telefono=?,correo_electronico=?,genero=?,usuario=?,fecha_nac=?, foto = ? ,id_distrito=? where dni = ?",
         [
           nombre,
           apellidoPaterno,
@@ -207,6 +181,7 @@ router.post("/edituser/datos/:dni", isLoggedIn, async (req, res) => {
           genero,
           usuario,
           fecha_nac,
+          url,
           id_distrito,
           dni,
         ]
@@ -292,15 +267,41 @@ router.get("/buscar", isLoggedIn, (req, res) => {
 
 router.get("/verlibros", isLoggedIn, async (req, res) => {
 
+  const genero = await pool.query(
+    "SELECT * FROM genero"
+  );
+
+  
+
   const libro = await pool.query(
     "SELECT * FROM LIBRO"
   );
 
-  res.render("links/verlibros", { libro });
+  res.render("links/verlibros", { libro , genero});
  
 
 
   
+  
+});
+
+router.post("/verlibros", isLoggedIn, async (req, res) => {
+
+  const {Genero} = req.body
+
+
+  const genero = await pool.query(
+    "SELECT * FROM genero"
+  );
+
+
+
+  const libro = await pool.query(
+    "SELECT * FROM LIBRO WHERE idGenero = ?", [Genero]
+  );
+
+  res.render("links/verlibros", { libro, genero});
+
   
 });
 

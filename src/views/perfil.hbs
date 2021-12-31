@@ -6,7 +6,7 @@
   <div class="ContDatosIzq">
     <div class="DivImg">
       {{#if user.foto}}
-        <img class="Img" src="/upload/{{user.foto}}" alt="Foto Perfil" />
+        <img  class="Img" id="imagen" src = {{user.foto}} alt = "Foto Perfil"/>
       {{else}}
         <img class="Img" src="https://res.cloudinary.com/didiblsne/image/upload/v1640059748/default_ti9xlo.jpg" alt="Foto Perfil" />
       {{/if}}

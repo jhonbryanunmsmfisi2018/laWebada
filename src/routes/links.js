@@ -50,36 +50,7 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     idGenero = 4,
     idEspecie = 44,
   } = req.body;
-  
-  let foto;
-  let subirDireccion;
 
-  if (req.files && Object.keys(req.files).length != 0) {
-    foto = req.files.foto;
-    subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
-
-    foto.mv(subirDireccion);
-  }
-
-  console.log(subirDireccion)
-
- 
-
-/*
-  foto = req.files.foto;
-
-  subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
-  foto.mv(subirDireccion);
-
-
-    
-  const result = await cloudinary.v2.uploader.upload(subirDireccion)*/
-
-
-
-  
-  console.log(req.body)
-  console.log(result.url)
 
   const nuevoLibro = {
     titulo,
@@ -92,7 +63,7 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     idGenero,
     idEspecie,
     dni: req.user.dni,
-    url: subirDireccion
+    url: ""
   };
 
   

@@ -4,6 +4,9 @@ const pool = require("../database");
 const path = require("path");
 const { isLoggedIn } = require("../lib/auth");
 
+
+
+
 const expresiones = {
   correo: /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   usuario: /^[a-zA-Z0-9-_]{4,12}$/,

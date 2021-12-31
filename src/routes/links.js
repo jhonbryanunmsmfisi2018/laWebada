@@ -6,9 +6,12 @@ const helpers = require("../lib/helpers");
 const path = require("path");
 const { Console } = require("console");
 
+const { urlimagen } = require("../public/js/servicio-imagen");
+
 
 const cloudinary = require("cloudinary");
 const { compareSync } = require("bcrypt");
+const { default: axios } = require("axios");
 cloudinary.config({
   cloud_name: 'didiblsne',
   api_key: '583462856519366',
@@ -37,8 +40,8 @@ router.get("/publicar", isLoggedIn, (req, res) => {
 
 
 router.post("/publicar", isLoggedIn, async (req, res) => {
- 
 
+  
   const {
     titulo,
     fechasubida,
@@ -54,32 +57,15 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
   let foto;
   let subirDireccion;
 
-  if (req.files && Object.keys(req.files).length != 0) {
-    foto = req.files.foto;
-    subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
-
-    foto.mv(subirDireccion);
-  }
-
-  console.log(subirDireccion)
+  
 
  
 
-/*
-  foto = req.files.foto;
-
-  subirDireccion = path.join(__dirname, "../", "public", "upload", foto.name);
-  foto.mv(subirDireccion);
-
-
-    
-  const result = await cloudinary.v2.uploader.upload(subirDireccion)*/
 
 
 
   
-  console.log(req.body)
-  console.log(result.url)
+  
 
   const nuevoLibro = {
     titulo,
@@ -92,13 +78,14 @@ router.post("/publicar", isLoggedIn, async (req, res) => {
     idGenero,
     idEspecie,
     dni: req.user.dni,
-    url: subirDireccion
+    url: ""
   };
 
   
   await pool.query("INSERT INTO LIBRO SET ?", [nuevoLibro]);
   req.flash("success", "Libro guardado satisfactoriamente");
-  res.redirect("/links/publicar");
+  res.redirect("/links/mislibros");
+
 });
 
 router.get("/mislibros", isLoggedIn, async (req, res) => {
@@ -302,6 +289,22 @@ router.get("/buscar", isLoggedIn, (req, res) => {
   
   
 });
+
+router.get("/verlibros", isLoggedIn, async (req, res) => {
+
+  const libro = await pool.query(
+    "SELECT * FROM LIBRO"
+  );
+
+  res.render("links/verlibros", { libro });
+ 
+
+
+  
+  
+});
+
+
 
 
 module.exports = router;

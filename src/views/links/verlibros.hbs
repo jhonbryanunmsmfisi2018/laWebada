@@ -1,0 +1,48 @@
+{{> navigation}}
+
+<div class="container p-4">
+  <div class="row">
+
+
+    {{#each libro}}
+    <div class="row">
+
+      <div class = "cool-md-3" style="width: 18rem;">
+        <div class = "card text-center">
+          <div class = "card-body">
+            
+            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>
+            
+            
+            <center>
+                <figure style="width: 50%">
+                    <img style="width:100%" src="https://images.cdn1.buscalibre.com/fit-in/360x360/6b/43/6b43ce8e1134abe50ac0b4c9bc3e9660.jpg" />
+                </figure>
+            </center>
+
+            <br>
+            <label class="m-2">Autor:  {{autor}} 
+            <br>
+            
+            <br>
+            <a href="#" class="btn btn-danger">Comprar</a>
+
+             
+          </div>
+
+        </div>
+
+      </div>
+      <br>
+    </div>
+    <br>
+
+
+    {{/each}}
+  </div>
+  <br>
+</div>
+<br>
+
+
+

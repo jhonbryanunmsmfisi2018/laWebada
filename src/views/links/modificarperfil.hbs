@@ -29,7 +29,19 @@
           <button id = "btn-foto" onclick="miFunc()" class = "btn-primary">Subir Foto</button>
             
           {{else}}
-            <img class="Img" src="/img/default.jpg" alt="Foto Perfil" />
+            
+
+            <input hidden
+            class="mensaje"
+            name="url"
+            id="url"               
+            required
+
+          />
+  
+          <img  class="Img" id="imagen" src = "/img/default.jpg" alt = "Foto Perfil"/>
+
+          <button id = "btn-foto" onclick="miFunc()" class = "btn-primary">Subir Foto</button>
           {{/if}}
         </figure>
         

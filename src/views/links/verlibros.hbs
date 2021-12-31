@@ -12,7 +12,7 @@
         <label for="especie">
           <h2>Filtrar por Categoria  </h2>
         </label>
-        <select select class="Input" name="Genero" id= "Genero">
+        <select select class="Input" name="Genero" id= "Genero" style="margin: 10px;">
            <option
             value=""
             selected
@@ -29,7 +29,7 @@
           {{/each}}
           </select>
 
-        <button style="margin: 40px;">Buscar</button>
+        <button style="margin: 10px;">Buscar</button>
       
       
       
@@ -42,33 +42,23 @@
 
 
     {{#each libro}}
-    <div class="row">
-
+    <div class="row" style="margin:4% 4%;">
       <div class = "cool-md-3" style="width: 18rem;">
         <div class = "card text-center">
-          <div class = "card-body">
-            
-            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>
-            
-            
+          <div class = "card-body">            
+            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>          
             <center>
                 <figure style="width: 50%">
                     <img style="width: 100%" src="{{url}}" />
                 </figure>
             </center>
-
             <br>
             <label class="m-2">Autor:  {{autor}} 
+            <br>  
             <br>
-            
-            <br>
-            <a href="#" class="btn btn-danger">Comprar</a>
-
-             
+            <a href="#" class="btn btn-danger">Comprar</a>  
           </div>
-
         </div>
-
       </div>
       <br>
     </div>

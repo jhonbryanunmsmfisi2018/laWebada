@@ -47,9 +47,37 @@
             </center>
             <br>
             <label class="m-2">Autor:  {{autor}} 
+            {{#if idgenero 4}}
             <br>  
-            <label class="m-2">:  {{autor}}
+              <label class="m-2">Categoria: EPICO
             <br>
+            {{/if }}
+
+            {{#if idgenero 14}}
+            <br>  
+              <label class="m-2">Categoria: LIRICO
+            <br>
+            {{/if }}
+
+            {{#if idgenero 24}}
+            <br>  
+              <label class="m-2">Categoria: DRAMATICO
+            <br>
+            {{/if }}
+
+            {{#if idgenero 34}}
+            <br>  
+              <label class="m-2">Categoria: NARRATIVO
+            <br>
+            {{/if }}
+
+            {{#if idgenero 44}}
+            <br>  
+              <label class="m-2">Categoria: EXPOSITIVO
+            <br>
+            {{/if }}
+            <label class="m-2">Precio: {{precio}}
+            <br>  
             <a href="#" class="btn btn-danger">Comprar</a>  
           </div>
         </div>

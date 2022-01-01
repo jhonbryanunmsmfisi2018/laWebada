@@ -8,10 +8,9 @@
     <div class="row">
       <div class="col-sm-12">
 
-        <form 	class="formulario-publicar" 
+        <form 	class="formulario-publicar"
     		id="form-publicar"
-    		action="/links/publicar" method="post"
-        encType="multipart/form-data">
+    		action="/links/publicar" method="post">
 
         <div class="box-shadow-full" style="padding-top: 3rem;">            
           <div class="row" style="margin-bottom: 25px;">
@@ -23,24 +22,41 @@
             <div class="col-12 col-md-8">
               <div
                 class="wrap-mensaje validate-input alert-validate"
-                data-validate="Name is required"
+                data-validate="Name is requiredd"
               >
                 <input
                   class="mensaje"
                   type="text"
                   name="titulo"
-                  id="titulo"
-                  
+                  id="titulo"                  
                   placeholder="Titulo..."
+                  required
                 />
                 <span class="focus-mensaje"></span>
               </div>
             </div>
           </div>
-          <div class = "input-group mb-3">
-            <input type="file" name="foto" id="foto" accept="image/*" />
 
-          </div>
+          <input hidden
+            class="mensaje"
+            name="url"
+            id="url"               
+            required
+
+          />
+
+
+          
+          <center>
+                <figure style="width: 40%">
+                    <img style="width: 40%" id="imagen" />
+                </figure>
+          </center>
+
+          <button id = "btn-foto" onclick="miFunc()" class = "btn-primary">Subir Foto</button>
+          
+
+         
       
           
           
@@ -48,8 +64,6 @@
             Información del libro
           </h1>
 
-          <img id="user-foto">
-          <button id="btn-foto" type="button">raaa</button>
 
           <div class="row">
             <div class="col-md-6">
@@ -62,6 +76,7 @@
                   id="autor"
                  
                   placeholder="Autor..."
+                  required
                 />
               </div>
               
@@ -74,6 +89,7 @@
                   id="pags"
                   
                   placeholder="Num pag..."
+                  required
                 />
               </div>
               <h2>Tamaño</h2>
@@ -85,6 +101,7 @@
                   id="tamaño"
                   
                   placeholder="Tamaño..."
+                  required
                 />
               </div>
             </div>
@@ -98,6 +115,7 @@
                   id="editorial"
                   
                   placeholder="Editorial..."
+                  required
                 />
               </div>
               <h2>Fecha Lanzamiento</h2>
@@ -110,6 +128,7 @@
                   id="fechasubida"
                   
                   placeholder="Fecha..."
+                  required
                 />
               </div>
               <h2>Idioma</h2>
@@ -121,6 +140,7 @@
                   id="idioma"
                   
                   placeholder="Idioma..."
+                  required
                 />
               </div>
             </div>
@@ -128,7 +148,7 @@
           <h2 style="text-align: left;">Descripción</h2>
           <div
             class="contenedor-mensaje validate-input"
-            data-validate="Message is required"
+            data-validate="Message is requiredd"
           >
             <textarea
               class="mensaje"
@@ -139,20 +159,44 @@
             ></textarea>
             <span class="focus-mensaje"></span>
           </div>
-          <h2 style="text-align: left;">Categoria</h2>
-          <div class="row">
-            <div class="col-md-6">
-              <select class="form-control custom-select">
-                <option selected="">Género</option>
-                <option value="4">Epico</option>
-                <option value="14">Lirico</option>
-                <option value="24">Dramatico</option>
-                <option value="34">Narrativo</option>
-                <option value="44">Expositivo</option>
-              </select>
-            </div>
-            
+          
+          <div class="GrupoInutp">
+            <label for="genero">
+              <h2>Genero   </h2>
+            </label>
+            <select select class="Input" name="idGenero">
+              {{#each genero}}
+                <option
+                  value="{{idGenero}}"
+                  {{selected idGenero}}
+                  required
+                >
+                  {{nombre}}
+                </option>
+              {{/each}}
+            </select>
           </div>
+
+          <div class="GrupoInutp">
+            <label for="especie">
+              <h2>Especie   </h2>
+              </label>
+            <select select class="Input" name="idEspecie">
+              {{#each especie}}
+                <option
+                  value="{{idEspecie}}"
+                  {{selected idEspecie}}
+                  required
+                >
+                  {{nombre}}
+                </option>
+              {{/each}}
+            </select>
+          </div>
+
+
+
+
           <div class="row">
             <div class="col-md-6">
               <h2 style="text-align: left;">Precio</h2>
@@ -163,6 +207,7 @@
                   name="precio"
                   id="precio"
                   placeholder="Precio..."
+                  required
                 />
               </div>
             </div>
@@ -175,6 +220,7 @@
                     type="radio"
                     name="flexRadioDefault"
                     id="flexRadioDefault1"
+                      
                   />
                   <label class="form-check-label" for="flexRadioDefault1">
                     Sí, acepto
@@ -213,10 +259,29 @@
     </div>
   </div>
 
-  
-<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-<script src="js/imagenes.js"></script>
-</main>
+
 
 </form>
+
+<script>
+  function miFunc() {
+    cloudinary.openUploadWidget({
+    cloudName: "didiblsne", uploadPreset: "pqq4ikys" }, (error, result) => {
+      if (!error && result && result.event === 'success') {
+        console.log('Imagen subida con éxito', result.info);
+        const imagen = document.querySelector('#imagen');
+        imagen.src = result.info.secure_url;
+        
+        const url = document.querySelector('#url');
+        url.value = result.info.secure_url;
+
+        console.log(url.value)
+        
+    }
+    });
+  }
+</script>
+
+
+
 

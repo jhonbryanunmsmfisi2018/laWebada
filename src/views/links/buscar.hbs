@@ -36,10 +36,10 @@
 </style>
 
 <div class="container p-4">
-  <div class="row">
+  
     {{#if libros}}
 
-    <div class="row">
+   
     {{#each libros}}
     <div class="row" style="margin: 0% 2% 2% 2%;">
       <div class = "cool-md-3" style="width: 18rem;">
@@ -63,8 +63,8 @@
           </div>
         </div>
       </div>
-      <br>
-    </div>
+      {{/each}}
+     
 
     {{else}}
     <center>
@@ -79,8 +79,5 @@
     
     {{/if}}
     
-
-    
-  </div>
 </div>
 

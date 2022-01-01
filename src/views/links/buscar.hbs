@@ -39,33 +39,32 @@
   <div class="row">
     {{#if libros}}
 
-    {{#each libros}}
-      <div class = "cool-md-3">
-        <div class = "contenido">
-          <div class = "card-body">
-          
-            
-            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>
+    <div class="row">
+    {{#each libro}}
+    <div class="row" style="margin: 0% 2% 2% 2%;">
+      <div class = "cool-md-3" style="width: 18rem;">
+        <div class = "card text-center">
+          <div class = "card-body">            
+            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>          
             <center>
-                <figure style="width: 50%">
+                <figure style="width: 80%">
                     <img style="width: 100%" src="{{url}}" />
                 </figure>
             </center>
-            
+            <br>
             <label class="m-2">Autor:  {{autor}} 
-            <br>
-            <br>
-            <a href="/links/deletebook/{{idLibro}}" class="btn btn-danger">Eliminar</a>
-            <a href="/links/editbook/{{idLibro}}" class="btn btn-secondary">Editar</a>
-             
+            
+            
+
+            
+            <label class="m-2">Precio: {{precio}}
+            <br>  
+            <a href="#" class="btn btn-danger">Comprar</a>  
           </div>
-
         </div>
-
       </div>
-
-
-    {{/each}}
+      <br>
+    </div>
 
     {{else}}
     <center>

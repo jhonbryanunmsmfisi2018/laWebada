@@ -10,7 +10,7 @@
     	action="/links/verlibros" method="post">
 
         <label for="especie">
-          <h2>Filtrar por Categoria  </h2>
+          <h2>Filtrar por categoria  </h2>
         </label>
         <select select class="Input" name="Genero" id= "Genero" style="margin: 10px;">
            <option
@@ -28,7 +28,7 @@
           </option>
           {{/each}}
           </select>
-        <button style="margin: 10px;">Buscar</button>      
+        <button style="margin: 10px;" class = "btn-primary">Buscar</button>      
       </form>           
     </div>
 
@@ -41,41 +41,19 @@
           <div class = "card-body">            
             <h3 class = "card-title text-uppercase"> {{titulo}}</h3>          
             <center>
-                <figure style="width: 50%">
+                <figure style="width: 80%">
                     <img style="width: 100%" src="{{url}}" />
                 </figure>
             </center>
             <br>
             <label class="m-2">Autor:  {{autor}} 
-            {{#if idgenero 4}}
+            
             <br>  
-              <label class="m-2">Categoria: EPICO
+              <label class="m-2">Categoria: {{nombre}}
             <br>
-            {{/if }}
+            
 
-            {{#if idgenero 14}}
-            <br>  
-              <label class="m-2">Categoria: LIRICO
-            <br>
-            {{/if }}
-
-            {{#if idgenero 24}}
-            <br>  
-              <label class="m-2">Categoria: DRAMATICO
-            <br>
-            {{/if }}
-
-            {{#if idgenero 34}}
-            <br>  
-              <label class="m-2">Categoria: NARRATIVO
-            <br>
-            {{/if }}
-
-            {{#if idgenero 44}}
-            <br>  
-              <label class="m-2">Categoria: EXPOSITIVO
-            <br>
-            {{/if }}
+            
             <label class="m-2">Precio: {{precio}}
             <br>  
             <a href="#" class="btn btn-danger">Comprar</a>  

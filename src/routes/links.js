@@ -274,7 +274,8 @@ router.get("/verlibros", isLoggedIn, async (req, res) => {
   
 
   const libro = await pool.query(
-    "SELECT * FROM LIBRO"
+
+    "SELECT l.titulo, l.precio, l.autor, l.url, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero"
   );
 
   res.render("links/verlibros", { libro , genero});
@@ -297,7 +298,7 @@ router.post("/verlibros", isLoggedIn, async (req, res) => {
 
 
   const libro = await pool.query(
-    "SELECT * FROM LIBRO WHERE idGenero = ?", [Genero]
+    "SELECT l.titulo, l.precio, l.autor, l.url, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero WHERE L.idGenero = ?", [Genero]
   );
 
   res.render("links/verlibros", { libro, genero});

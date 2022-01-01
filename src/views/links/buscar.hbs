@@ -39,7 +39,6 @@
   
     {{#if libros}}
 
-   
     {{#each libros}}
     <div class="row" style="margin: 0% 2% 2% 2%;">
       <div class = "cool-md-3" style="width: 18rem;">
@@ -51,18 +50,16 @@
                     <img style="width: 100%" src="{{url}}" />
                 </figure>
             </center>
+            <label class="m-2">Autor:  {{autor}}  
             <br>
-            <label class="m-2">Autor:  {{autor}} 
-            
-            
-
-            
-            <label class="m-2">Precio: {{precio}}
+            <label class="m-2">Precio: {{precio}} 
             <br>  
             <a href="#" class="btn btn-danger">Comprar</a>  
           </div>
         </div>
       </div>
+
+    
       {{/each}}
      
 

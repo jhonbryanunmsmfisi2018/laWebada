@@ -25,30 +25,9 @@
     </section>
   </div>
 
-  <button id = "btn-foto" onclick="miFunc()">Subir Fotoo</button>
-
-  
-  <img id = "imagen">
- 
   
 </main>
 
-<script>
-  function miFunc() {
-    cloudinary.openUploadWidget({
-    cloudName: "didiblsne", uploadPreset: "pqq4ikys" }, (error, result) => {
-      if (!error && result && result.event === 'success') {
-        console.log('Imagen subida con éxito', result.info);
-        const imagen = document.querySelector('#imagen');
-        imagen.src = result.info.secure_url;
-        imagen.value = result.info.secure_url;
-
-        console.log(imagen.value)
-        
-    }
-    });
-  }
-</script>
 
 
 

@@ -39,13 +39,15 @@
       <div class = "cool-md-3" style="width: 18rem;">
         <div class = "card text-center">
           <div class = "card-body">            
-            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>          
+            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>
+            
+                     
             <center>
                 <figure style="width: 80%">
                     <img style="width: 100%" src="{{url}}" />
                 </figure>
-            </center>
-            <br>
+            </center> 
+            <input  hidden id= "idLibro" value = {{idLibro}} ></input>
             <label class="m-2">Autor:  {{autor}} 
             
             <br>  
@@ -56,7 +58,9 @@
             
             <label class="m-2">Precio: {{precio}}
             <br>  
-            <a href="#" class="btn btn-danger">Comprar</a>  
+            
+            <a href="/links/addtocart/{{idLibro}}" class="btn btn-danger">add to cart</a> 
+
           </div>
         </div>
       </div>
@@ -70,5 +74,7 @@
   <br>
 </div>
 <br>
+
+
 
 

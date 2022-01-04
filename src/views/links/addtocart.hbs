@@ -1,0 +1,92 @@
+{{> navigation}}
+
+<style>
+
+.form{
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formulario{
+  width: 400px;
+  background: #BAC0C0;
+  padding: 30px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 5px;
+
+}
+
+.controls{
+  width: 100%;
+  background: #EBF5F5;
+  padding: 10px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+  border: 1px solid #6075CB;
+  font-size: 18px;
+}
+
+</style>
+
+<div class="form">
+  <center><h1>Añadir al Carrito</h1></center>
+
+          <form action="/links/addtocart/{{editbook.idLibro}}" method="POST">
+
+            <div class="row" style="margin: 0% 2% 2% 2%;">
+            <div class = "cool-md-3" style="width: 18rem;">
+                <div class = "card text-center">
+                <div class = "card-body">            
+                    <h3 class = "card-title text-uppercase"> {{editbook.titulo}}</h3>
+                    
+                            
+                    <center>
+                        <figure style="width: 80%">
+                            <img style="width: 100%" src="{{editbook.url}}" />
+                        </figure>
+                    </center> 
+                    <input  hidden id= "idLibro" value = {{editbook.idLibro}} ></input>
+                    <label class="m-2">Autor:  {{editbook.autor}} 
+                    
+                    <br>  
+                    <label class="m-2">Categoria: {{editbook.nombre}}
+                    <br>
+                    <label class="m-2">Descripción: {{editbook.descripcion}}
+                    <br>
+                    
+
+                    
+                    <label class="m-2">Precio: {{editbook.precio}}
+                    <br>  
+                    <label class="m-2"> Cantidad:        
+                    <input class="Input"
+                    id="cantidad"
+                    name="cantidad"
+                    placeholder="Ingrese la cantidad"
+                    type="number" pattern="^[0-9]" title='Only Number' min="1" step="1" required>
+                    <br> 
+                    <br> 
+                    <br> 
+
+                    <button>
+                    Añadir
+                    </button> 
+                    
+
+                </div>
+                </div>
+            </div>
+            <br>
+            </div>
+            <br>
+
+
+
+            
+</div>

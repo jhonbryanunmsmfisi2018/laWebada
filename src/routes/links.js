@@ -275,7 +275,7 @@ router.get("/verlibros", isLoggedIn, async (req, res) => {
 
   const libro = await pool.query(
 
-    "SELECT l.titulo, l.precio, l.autor, l.url, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero"
+    "SELECT l.*, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero"
   );
 
   res.render("links/verlibros", { libro , genero});
@@ -298,13 +298,96 @@ router.post("/verlibros", isLoggedIn, async (req, res) => {
 
 
   const libro = await pool.query(
-    "SELECT l.titulo, l.precio, l.autor, l.url, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero WHERE L.idGenero = ?", [Genero]
+    "SELECT l.*, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero WHERE L.idGenero = ?", [Genero]
   );
 
   res.render("links/verlibros", { libro, genero});
 
   
 });
+
+router.get("/carrito", isLoggedIn, async (req, res) => {
+
+  const genero = await pool.query(
+    "SELECT * FROM carrito"
+  );
+
+  
+
+  const libro = await pool.query(
+
+    "SELECT l.*, g.nombre, c.* FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero INNER JOIN heroku_a2fd79052888e7b.carrito C ON L.idLibro = C.idLibro"
+  );
+
+  res.render("links/carrito", { libro , genero});
+
+  
+});
+
+router.get("/addtocart/:idLibro", isLoggedIn, async (req, res) => {
+  const { idLibro } = req.params;
+  const libro = await pool.query(
+    "SELECT l.*, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero WHERE idLibro = ?",
+     [idLibro] 
+  );
+  res.render("links/addtocart", { editbook: libro[0] });
+});
+
+router.post("/addtocart/:idLibro", isLoggedIn, async (req, res) => {
+  const { idLibro } = req.params;
+  const { cantidad } = req.body;
+
+
+
+  const newCart = {
+    idLibro,
+    cantidad,
+    dni: req.user.dni
+
+  }
+
+
+  await pool.query("INSERT INTO carrito SET ?", [newCart]);
+  
+
+
+
+  const genero = await pool.query(
+    "SELECT * FROM carrito"
+  );
+
+  
+
+  const libro = await pool.query(
+
+    "SELECT l.*, g.nombre, c.* FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero INNER JOIN heroku_a2fd79052888e7b.carrito C ON L.idLibro = C.idLibro"
+  );
+
+  res.render("links/carrito", { libro , genero});
+
+});
+
+
+router.get("/deletecarrito/:idCarrito", isLoggedIn, async (req, res) => {
+  const { idCarrito} = req.params;
+  await pool.query("delete from carrito where idCarrito = ?",[idCarrito]);
+  
+  const genero = await pool.query(
+    "SELECT * FROM carrito"
+  );
+
+  
+
+  const libro = await pool.query(
+
+    "SELECT l.*, c.* FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero INNER JOIN heroku_a2fd79052888e7b.carrito C ON L.idLibro = C.idLibro"
+  );
+
+  res.render("links/carrito", { libro , genero});   
+});
+
+
+
 
 
 

@@ -1,0 +1,50 @@
+{{> navigation}}
+
+<div class="container p-4">
+
+  <center><h1>CARRITO</h1></center>
+
+
+  
+  <div class="row">
+    {{#each libro}}
+    <div class="row" style="margin: 0% 2% 2% 2%;">
+      <div class = "cool-md-3" style="width: 18rem;">
+        <div class = "card text-center">
+          <div class = "card-body">            
+            <h3 class = "card-title text-uppercase"> {{titulo}}</h3>          
+            <center>
+                <figure style="width: 80%">
+                    <img style="width: 100%" src="{{url}}" />
+                </figure>
+            </center>
+            <br>
+            <label class="m-2">Autor:  {{autor}} 
+            
+            <br>  
+              <label class="m-2">Categoria: {{nombre}}
+            <br>
+            
+
+            
+            <label class="m-2">Precio: {{precio}}
+            <br>  
+            <label class="m-2">Cantidad: {{cantidad}}
+            <br>
+
+            
+
+            <a href="/links/deletecarrito/{{idCarrito}}" class="btn btn-danger">Eliminar Pedido</a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{/each}}
+  </div>
+  <br>
+</div>
+<br>
+
+

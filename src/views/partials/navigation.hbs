@@ -2,11 +2,14 @@
 
 <nav class="nav">
   <div class="nav-sup">
-    <div class="nav-sup__grupo-icons">
-      <i class="fab fa-instagram-square"></i>
-      <i class="fab fa-twitter-square"></i>
-      <i class="fab fa-facebook"></i>
-    </div>
+    {{#if user}}
+      <div class="nav-sup__grupo-icons">
+      <i class="fas fa-shopping-cart"></i>
+      <a href="/links/carrito" class  = "btn btn-primary">Carrito</a>
+      </div>  
+    {{/if}}
+
+  
 
     <form 
     class="nav-sup__grupo-busqueda"
@@ -21,6 +24,7 @@
     </form>
 
     {{#if user}}
+      
       <div id="nav-sup__mi-cuenta" class="nav-sup__mi-cuenta">
         <i class="fas fa-user-circle"></i>
         <span>

@@ -22,7 +22,6 @@ router.get("/", async (req, res) => {
   
   const genero = await pool.query("SELECT * FROM genero");
 
-  console.log("asdasd") 
   res.render("index", { genero });
 });
 

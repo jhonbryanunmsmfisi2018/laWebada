@@ -122,7 +122,7 @@ router.post("/editbook/:idLibro", isLoggedIn, async (req, res) => {
     precio,
     autor,
   };
-  console.log(actLibro);
+  
   await pool.query("update libro set ? where idLibro = ?", [actLibro, idLibro]);
   req.flash("success", "Libro actualizado satisfactoriamente");
   res.redirect("/links/mislibros");
@@ -248,7 +248,7 @@ router.post("/buscar", isLoggedIn, async (req, res) => {
   const { libro } = req.body;
 
   const libros= await pool.query("SELECT * FROM libro WHERE titulo=?", [libro]);
-  console.log(libros);
+  
 
   res.render("links/buscar", {libros});
 

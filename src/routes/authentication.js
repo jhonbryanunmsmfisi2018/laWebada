@@ -8,7 +8,7 @@ const pool = require("../database");
 
 
 router.get("/registro", isNotLoggedIn, (req, res) => {
-z
+
   res.render("auth/registro");
 });
 

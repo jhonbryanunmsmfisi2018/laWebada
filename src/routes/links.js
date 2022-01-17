@@ -316,7 +316,7 @@ router.get("/carrito", isLoggedIn, async (req, res) => {
 
   const libro = await pool.query(
 
-    "SELECT l.*, g.nombre, c.* FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero INNER JOIN heroku_a2fd79052888e7b.carrito C ON L.idLibro = C.idLibro"
+    "SELECT l.*, g.nombre, c.* FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero INNER JOIN heroku_a2fd79052888e7b.carrito C ON L.idLibro = C.idLibro WHERE c.dni = ?", [req.user.dni]
   );
 
   res.render("links/carrito", { libro , genero});
@@ -327,7 +327,7 @@ router.get("/carrito", isLoggedIn, async (req, res) => {
 router.get("/addtocart/:idLibro", isLoggedIn, async (req, res) => {
   const { idLibro } = req.params;
   const libro = await pool.query(
-    "SELECT l.*, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero WHERE idLibro = ?",
+    "SELECT l.*, g.nombre FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero WHERE idLibro = ? ",
      [idLibro] 
   );
   res.render("links/addtocart", { editbook: libro[0] });
@@ -360,7 +360,7 @@ router.post("/addtocart/:idLibro", isLoggedIn, async (req, res) => {
 
   const libro = await pool.query(
 
-    "SELECT l.*, g.nombre, c.* FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero INNER JOIN heroku_a2fd79052888e7b.carrito C ON L.idLibro = C.idLibro"
+    "SELECT l.*, g.nombre, c.* FROM heroku_a2fd79052888e7b.libro L  INNER JOIN heroku_a2fd79052888e7b.genero G ON L.idGenero = G.idGenero INNER JOIN heroku_a2fd79052888e7b.carrito C ON L.idLibro = C.idLibro WHERE c.dni = ?", [req.user.dni]
   );
 
   res.render("links/carrito", { libro , genero});
